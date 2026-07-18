@@ -4,10 +4,12 @@
  * PIN numérico + autenticação JWT via /api/auth/login
  */
 
-import { useState } from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [pin, setPin] = useState('')
+  const navigate = useNavigate();
+  const [pin, setPin] = useState('');
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -22,14 +24,19 @@ export default function Login() {
 
   const handleSubmit = async () => {
     if (pin.length < 4) {
-      setError('PIN deve ter no mínimo 4 dígitos')
-      return
+      setError('PIN deve ter no mínimo 4 dígitos');
+      return;
     }
-    setLoading(true)
-    setError('')
-    // TODO Fase 4: integrar com api.post('/auth/login', { pin })
-    console.log('Login com PIN:', pin)
-    setLoading(false)
+    setLoading(true);
+    setError('');
+    
+    // MOCK: Qualquer PIN >= 4 dígitos entra
+    setTimeout(() => {
+      localStorage.setItem('pdv_token', 'mock_token_123');
+      localStorage.setItem('pdv_user', JSON.stringify({ nome: 'João Garçom', role: 'GARCOM' }));
+      setLoading(false);
+      navigate('/mesas');
+    }, 500); // Simulando delay de rede
   }
 
   return (
