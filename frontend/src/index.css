@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* =========================================
+   Design Tokens — Buteco da Gente PDV
+   ========================================= */
+@theme {
+  --color-primary: #f59e0b;
+  --color-primary-dark: #d97706;
+  --color-primary-light: #fbbf24;
+
+  --color-surface: #1a1a2e;
+  --color-surface-2: #16213e;
+  --color-surface-3: #0f3460;
+
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+
+  --font-sans: 'Inter', sans-serif;
+
+  --radius-card: 0.75rem;
+  --radius-btn: 0.5rem;
+}
+
+/* =========================================
+   Global Reset & Base
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1a1a2e;
+  color: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   Scrollbar custom
+   ========================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #16213e;
+}
+::-webkit-scrollbar-thumb {
+  background: #0f3460;
+  border-radius: 3px;
+}

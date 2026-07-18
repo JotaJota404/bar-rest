@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: pdv
+      POSTGRES_USER: pdv_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    # Porta NÃO exposta publicamente — só rede interna do compose
+
+  backend:
+    build: ../backend/bar-rest
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/pdv
+      SPRING_DATASOURCE_USERNAME: pdv_user
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+      SPRING_PROFILES_ACTIVE: prod
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:

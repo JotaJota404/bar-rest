@@ -1,0 +1,20 @@
+# Segredos — nunca commitar
+infra/.env
+infra/.env.production
+
+# Backend build
+backend/**/target/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.production
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.suo
+*.sw?
+.DS_Store
